@@ -1,15 +1,23 @@
-## Put comments here that give an overall description of what your
-## functions do
+## This pair of functions generate and cache for future use the inverse of an invertible matrix.
+## The inverse matrix is saved to the global environment for use by cacheSolve
 
-## Write a short comment describing this function
+## makeCacheMatrix generates the inverse matrix y and saves it global environment
 
-makeCacheMatrix <- function(x = matrix()) {
 
+makeCacheMatrix <- function(x = matrix()){
+    y <<- solve(x)
+    list(y)
 }
 
+## cacheSolve compares a new matrix, n, with matrix used in makeCacheMatrix.
+## If identical the cached matrix y is returned, else the inverse is calculated using solve.
 
-## Write a short comment describing this function
-
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+cacheSolve <- function(n = matrix){
+    if(identical(n, x)) {
+        message("getting cached data")
+        return(y)
+    }
+    else
+    {y <- solve(n)
+    y}
 }
